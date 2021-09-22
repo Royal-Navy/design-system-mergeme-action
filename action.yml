@@ -1,0 +1,41 @@
+branding:
+  color: gray-dark
+  icon: git-merge
+description:
+  'Automatically merge Pull Requests from the indicated github account.'
+inputs:
+  GITHUB_LOGIN:
+    default: 'dependabot'
+    description: >
+      The GitHub login for which automatic merges are enabled. Supports
+      micromatch.
+    required: false
+  GITHUB_TOKEN:
+    description: 'A GitHub token.'
+    required: true
+  MERGE_METHOD:
+    default: SQUASH
+    description:
+      'Represents available types of methods to use when merging a pull request.
+      One of: MERGE, STASH or REBASE'
+    required: false
+  PRESET:
+    description:
+      'Enable additional functionality to better personalize the behavior. One
+      of: DEPENDABOT_MINOR or DEPENDABOT_PATCH.'
+    required: false
+  ENABLED_FOR_MANUAL_CHANGES:
+    description:
+      'Enable automatic merges when changes are made to the PR by a different
+      author than the original one. Requires commits to be signed. One of:
+      "true" or "false".'
+    default: 'false'
+    required: false
+  MAXIMUM_RETRIES:
+    description: 'Maximum retry attempts to merge or get the PR information.'
+    default: '3'
+    required: false
+name: 'Merge me!'
+runs:
+  main: dist/index.js
+  using: node12
